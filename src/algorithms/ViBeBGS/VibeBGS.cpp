@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <execution>
+#include <thread>
 
 namespace bgslibrary
 {
