@@ -44,6 +44,7 @@ algorithms.append(bgs.LOBSTER())
 algorithms.append(bgs.PAWCS())
 algorithms.append(bgs.TwoPoints())
 algorithms.append(bgs.ViBe())
+algorithms.append(bgs.VibeBGS())
 algorithms.append(bgs.CodeBook())
 
 if is_cv2():

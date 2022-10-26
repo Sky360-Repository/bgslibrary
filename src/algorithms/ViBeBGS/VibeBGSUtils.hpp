@@ -2,6 +2,7 @@
 
 #include "pcg32.hpp"
 
+#include <string.h>
 #include <array>
 #include <memory>
 #include <vector>
