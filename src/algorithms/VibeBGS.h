@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include "IBGS.h"
 #include "ViBeBGS/VibeBGS.hpp"
 
