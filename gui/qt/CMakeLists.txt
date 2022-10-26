@@ -2,8 +2,12 @@ cmake_minimum_required(VERSION 3.1)
 
 project(bgslibrary_gui)
 
+include(CheckCXXCompilerFlag)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 if(UNIX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
@@ -70,7 +74,7 @@ file(GLOB_RECURSE bgs_inc ../../src/algorithms/*.h)
 
 include_directories(${CMAKE_SOURCE_DIR} ${OpenCV_INCLUDE_DIRS})
 
-add_library(libbgs STATIC ${bgs_src} ${tools_src} ${utils_src} ${bgs_inc} ${tools_inc} ${utils_inc})
+add_library(libbgs SHARED ${bgs_src} ${tools_src} ${utils_src} ${bgs_inc} ${tools_inc} ${utils_inc})
 target_link_libraries(libbgs ${OpenCV_LIBS})
 set_property(TARGET libbgs PROPERTY PUBLIC_HEADER ${bgs_inc} ${tools_inc} ${utils_inc})
 
