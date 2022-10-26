@@ -14,7 +14,6 @@
 #include "utils/GenericKeys.h"
 #include "utils/ILoadSaveConfig.h"
 #include "IFrameProcessor.h"
-#include "algorithms/algorithms.h"
 
 namespace bgslibrary
 {
@@ -57,7 +56,5 @@ namespace bgslibrary
     
     void save_config(cv::FileStorage &fs);
     void load_config(cv::FileStorage &fs);
-    std::unique_ptr<algorithms::VibeBGS> vibeBgs;
-    std::unique_ptr<algorithms::ViBe> vibe;
   };
 }
