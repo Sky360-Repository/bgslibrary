@@ -1,11 +1,12 @@
 #pragma once
 
-#include "pcg32.hpp"
-
 #include <string.h>
+#include <stddef.h>
 #include <array>
 #include <memory>
 #include <vector>
+
+#include "pcg32.hpp"
 
 namespace bgslibrary
 {
