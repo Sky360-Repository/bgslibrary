@@ -30,6 +30,7 @@ namespace bgslibrary
       ~VibeBGS();
 
       void process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel);
+      cv::Mat getBackgroundModel();
 
     private:
       void save_config(cv::FileStorage &fs);
