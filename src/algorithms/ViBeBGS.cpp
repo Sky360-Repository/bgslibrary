@@ -23,6 +23,12 @@ VibeBGS::~VibeBGS() {
     debug_destruction(VibeBGS);
 }
 
+cv::Mat VibeBGS::getBackgroundModel() {
+    cv::Mat bgModel;
+    model->getBackgroundImage(bgModel);
+    return bgModel;
+}
+
 /// Ignoring img_bgmodel for now
 void VibeBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
@@ -32,17 +38,11 @@ void VibeBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
         return;
 
     if (firstTime) {
-        if (numberOfProcess > 1)
-            model->initializeParallel(img_input, numberOfProcess);
-        else
-            model->initialize(img_input);
+        model->initialize(img_input, numberOfProcess);
         firstTime = false;
     }
 
-    if (numberOfProcess > 1)
-        model->applyParallel(img_input, img_output);
-    else
-        model->apply(img_input, img_output);
+    model->apply(img_input, img_output);
 
 #ifndef MEX_COMPILE_FLAG
     if (showOutput)

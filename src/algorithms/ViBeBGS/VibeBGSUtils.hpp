@@ -30,6 +30,10 @@ namespace bgslibrary
                     originalPixelPos{_originalPixelPos}
                 {}
 
+                static std::unique_ptr<ImgSize> create(int _width, int _height, int _numBytesPerPixel, size_t _originalPixelPos = 0) {
+                    return std::make_unique<ImgSize>(_width, _height, _numBytesPerPixel, _originalPixelPos);
+                }
+
                 const int width;
                 const int height;
                 const int numBytesPerPixel;
@@ -75,6 +79,10 @@ namespace bgslibrary
                 const long r1{a[1] - b[1]};
                 const long r2{a[2] - b[2]};
                 return (r0 * r0) + (r1 * r1) + (r2 * r2);
+            }
+
+            static inline size_t L1dist(const uchar* const a, const uchar* const b) {
+                return std::abs((*(char*)a) - (*(char*)b));
             }
 
             /// returns the neighbor location for the specified random index & original pixel location; also guards against out-of-bounds values via image/border size check

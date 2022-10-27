@@ -59,7 +59,7 @@ namespace bgslibrary
                 _img_background.copyTo(img_background);
         return _img_foreground;
       }
-      cv::Mat getBackgroundModel() {
+      virtual cv::Mat getBackgroundModel() {
         return img_background;
       }
       IBGS(const std::string _algorithmName){
