@@ -104,6 +104,9 @@ namespace bgslibrary
       return (IBGS *)malloc(sizeof(VibeBGS));
     if (alg_name.compare("CodeBook") == 0)
       return (IBGS *)malloc(sizeof(CodeBook));
+    if (alg_name.compare("WeightedMovingVarianceSky360") == 0)
+      return (IBGS *)malloc(sizeof(WeightedMovingVarianceSky360));
+
     return NULL;
   }
 
@@ -203,6 +206,8 @@ namespace bgslibrary
       return new (ptrBGS) VibeBGS();
     if (alg_name.compare("CodeBook") == 0)
       return new (ptrBGS) CodeBook();
+    if (alg_name.compare("WeightedMovingVarianceSky360") == 0)
+      return new (ptrBGS) WeightedMovingVarianceSky360();
     return NULL;
   }
 }

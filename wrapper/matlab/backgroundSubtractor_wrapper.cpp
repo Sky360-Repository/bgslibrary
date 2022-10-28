@@ -50,6 +50,7 @@
 #include "ViBe.h"
 #include "ViBeBGS.h"
 #include "CodeBook.h"
+#include "WeightedMovingVarianceSky360.h"
 
 using namespace bgslibrary::algorithms;
 
@@ -153,6 +154,9 @@ namespace bgslibrary
       return (IBGS *)mxCalloc(1, sizeof(VibeBGS));
     if (alg_name.compare("CodeBook") == 0)
       return (IBGS *)mxCalloc(1, sizeof(CodeBook));
+    if (alg_name.compare("WeightedMovingVarianceSky360") == 0)
+      return (IBGS *)mxCalloc(1, sizeof(WeightedMovingVarianceSky360));
+      
     return NULL;
   }
 
@@ -252,6 +256,9 @@ namespace bgslibrary
       return new (ptrBGS) VibeBGS();
     if (alg_name.compare("CodeBook") == 0)
       return new (ptrBGS) CodeBook();
+    if (alg_name.compare("WeightedMovingVarianceSky360") == 0)
+      return new (ptrBGS) WeightedMovingVarianceSky360();
+      
     return NULL;
   }
 }

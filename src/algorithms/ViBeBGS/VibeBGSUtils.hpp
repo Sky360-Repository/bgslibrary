@@ -149,7 +149,7 @@ namespace bgslibrary
                 getSamplePosition<7, 7>(s_anSamplesInitPattern, s_nSamplesInitPatternTot, nRandIdx, nSampleCoord_X, nSampleCoord_Y, nOrigCoord_X, nOrigCoord_Y, oImageSize);
             }
 
-            static inline void splitImg(const Img& _inputImg, std::vector<std::shared_ptr<Img>>& _outputImages, int _numSplits) {
+            static inline void splitImg(const Img& _inputImg, std::vector<std::unique_ptr<Img>>& _outputImages, int _numSplits) {
                 _outputImages.resize(_numSplits);
                 int y = 0;
                 int h = _inputImg.size.height / _numSplits;

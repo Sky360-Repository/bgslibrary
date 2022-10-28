@@ -316,4 +316,10 @@ PYBIND11_MODULE(pybgs, m)
     .def("apply", &CodeBook::apply)
     .def("getBackgroundModel", &CodeBook::getBackgroundModel)
     ;
+
+  py::class_<WeightedMovingVarianceSky360>(m, "WeightedMovingVarianceSky360")
+    .def(py::init<>())
+    .def("apply", &WeightedMovingVarianceSky360::apply)
+    .def("getBackgroundModel", &WeightedMovingVarianceSky360::getBackgroundModel)
+    ;
 }
