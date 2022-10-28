@@ -44,6 +44,7 @@
 #include "ViBe.h"
 #include "CodeBook.h"
 #include "VibeBGS.h"
+#include "WeightedMovingVarianceSky360.h"
 
 //#include "_template_/MyBGS.h"
 

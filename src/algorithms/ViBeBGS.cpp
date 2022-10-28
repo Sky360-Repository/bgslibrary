@@ -24,18 +24,22 @@ VibeBGS::~VibeBGS() {
 }
 
 cv::Mat VibeBGS::getBackgroundModel() {
-    cv::Mat bgModel;
-    model->getBackgroundImage(bgModel);
-    return bgModel;
+    model->getBackgroundImage(img_background);
+    return img_background;
 }
 
 /// Ignoring img_bgmodel for now
 void VibeBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
-    //init(img_input, img_output, img_bgmodel);
-    img_output.create(img_input.size(), CV_8UC1);
     if (img_input.empty())
         return;
+
+    if (img_output.empty())
+        img_output.create(img_input.size(), CV_8UC1);
+    if (img_bgmodel.empty())
+        img_bgmodel.create(img_input.size(), CV_8UC1);
+    if (img_background.empty())
+        img_background.create(img_input.size(), CV_8UC1);
 
     if (firstTime) {
         model->initialize(img_input, numberOfProcess);

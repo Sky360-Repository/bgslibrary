@@ -20,7 +20,7 @@ namespace bgslibrary
             void VibeBGS::initialize(const cv::Mat& _initImg, int _numProcesses) {
                 m_numProcessesParallel = _numProcesses;
 
-                std::vector<std::shared_ptr<Img>> imgSplit(_numProcesses);
+                std::vector<std::unique_ptr<Img>> imgSplit(_numProcesses);
                 m_origImgSize = ImgSize::create(_initImg.size().width, _initImg.size().height, _initImg.channels());
                 Img frameImg(_initImg.data, *m_origImgSize);
                 splitImg(frameImg, imgSplit, _numProcesses);
@@ -56,6 +56,9 @@ namespace bgslibrary
             }
 
             void VibeBGS::apply(const cv::Mat& _image, cv::Mat& _fgmask) {
+                if (_fgmask.empty()) {
+                    _fgmask.create(_image.size(), CV_8UC1);
+                }
                 Img applyImg(_image.data, ImgSize(_image.size().width, _image.size().height, _image.channels()));
                 Img maskImg(_fgmask.data, ImgSize(_fgmask.size().width, _fgmask.size().height, 1));
                 if (m_numProcessesParallel == 1) {
@@ -186,7 +189,6 @@ namespace bgslibrary
 
                 for(size_t t{0}; t < m_numProcessesParallel; ++t) {
                     const std::vector<std::unique_ptr<Img>>& bgSamples = m_bgImgSamples[t];
-
                     for(size_t n{0}; n < m_params.NBGSamples; ++n) {
                         size_t inPixOffset{0};
                         size_t outPixOffset{bgSamples[0]->size.originalPixelPos * sizeof(float) * bgSamples[0]->size.numBytesPerPixel};
